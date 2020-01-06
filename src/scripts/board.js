@@ -1,3 +1,5 @@
+import Stone from './stone';
+
 const initialWhitePositions = [
   [46, 142],
   [46, 262],
@@ -6,7 +8,7 @@ const initialWhitePositions = [
   [70, 202],
   [70, 322],
   [70, 442]  
-]
+];
 
 export default class Board {
   constructor() {
@@ -18,7 +20,7 @@ export default class Board {
 
   placeWhiteStones() {
     let i = 0;
-    while (Object.keys(this.whiteStones.length) < 7) {
+    while (Object.keys(this.whiteStones).length < 7) {
       this.whiteStones[i + 1] = new Stone('white', initialWhitePositions[i])
       i++;
     }
@@ -26,9 +28,9 @@ export default class Board {
 
   placeBlackStones() {
     let i = 0;
-    while (Object.keys(this.blackStones.length) < 7) {
+    while (Object.keys(this.blackStones).length < 7) {
       let [x, y] = initialWhitePositions[i];
-      this.blackStones[i + 1] = new Stone('black', [500 - x, 500 - y]);
+      this.blackStones[i + 1] = new Stone("black", [500 - x, 500 - y]);
       i++;
     }
   }
