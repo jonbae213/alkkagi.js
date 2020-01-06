@@ -17,8 +17,8 @@ This app is a game which mixes coding and my culture. Alkkagi is a traditional k
 ![Wireframe](wireframe.png)
 
 # Implementation Timeline
-* 1/6 - File structure and game plan
-* 1/7 - Getting the pieces to render
-* 1/8 - Game logic
-* 1/9 - getting movements to work
-* 1/10 - fix bugs and styling
+* 1/6 - Rendering the board and setting up display
+* 1/7 - Setting up player, board, stones and hand
+* 1/8 - Physics of the game
+* 1/9 - User interface, clicking, powerlevels
+* 1/10 - Get the game to blend together and styling
