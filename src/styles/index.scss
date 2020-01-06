@@ -3,12 +3,18 @@
   flex-wrap: wrap;
   justify-content: center;
   align-items: center;
+
+  background-color: rgba(116, 125, 11, 0.4);
 }
 
 .middle {
   display: flex;
   justify-content: space-around;
   width: 100%;
+}
+
+#board {
+
 }
 
 h1 {
