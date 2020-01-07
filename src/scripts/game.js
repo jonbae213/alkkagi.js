@@ -1,4 +1,4 @@
-import Board from './board';
+import Board from './game_objects/board';
 
 export default class Game {
   constructor(board) {

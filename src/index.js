@@ -1,7 +1,7 @@
 import './styles/index.scss';
 import View from './scripts/view';
 import Game from './scripts/game';
-import Board from './scripts/board';
+import Board from './scripts/game_objects/board';
 
 document.addEventListener("DOMContentLoaded", () => {
   const board = document.getElementById("board");

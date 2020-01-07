@@ -1,10 +1,10 @@
+
 .app {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
   align-items: center;
-
-  background-color: rgba(116, 125, 11, 0.4);
+  background-color: "rgba(143, 12, 176, 0.26)";
 }
 
 .middle {
@@ -14,7 +14,7 @@
 }
 
 #board {
-
+  z-index: 3;
 }
 
 h1 {

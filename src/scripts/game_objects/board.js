@@ -34,4 +34,24 @@ export default class Board {
       i++;
     }
   }
+
+  draw(ctx) {
+    ctx.beginPath();
+    ctx.rect(0, 0, 504, 504);
+    ctx.fillStyle = 'rgba(125, 85, 11, 0.5)';
+    ctx.fill();
+
+    for (let x = 21; x <= 480; x += 24) {
+      for (let y = 21; y <= 480; y += 24) {
+        ctx.moveTo(x, 21);
+        ctx.lineTo(x, 480);
+        ctx.strokeStyle = "rgba(38, 12, 12, 0.26)";
+        ctx.stroke();
+        ctx.moveTo(21, y);
+        ctx.lineTo(480, y);
+        ctx.strokeStyle = "rgba(38, 12, 12, 0.26)";
+        ctx.stroke();
+      }
+    }
+  }
 }
