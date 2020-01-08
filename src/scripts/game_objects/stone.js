@@ -2,7 +2,7 @@ export default class Stone {
   constructor(color, pos, num) {
     this.pos = pos;
     this.color = color;
-    this.num = num
+    this.num = num;
   }
 
   draw(ctx) {
@@ -11,7 +11,7 @@ export default class Stone {
     ctx.arc(x, y, 10, 0, 2 * Math.PI);
     ctx.stroke();
     ctx.fillStyle = this.color;
-    ctx.fill();    
+    ctx.fill();  
   } 
 
   move(dir, speed,) {
