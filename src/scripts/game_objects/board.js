@@ -27,13 +27,11 @@ export default class Board {
   }
 
   placeBlackStones() {
-    let i = 7;
-    let j = 0
+    let i = 0
     while (this.blackStones.length < 7) {
-      let [x, y] = initialWhitePositions[j];
+      let [x, y] = initialWhitePositions[i];
       this.blackStones.push(new Stone("black", [500 - x, 500 - y], i));
       i++;
-      j++;
     }
   }
 

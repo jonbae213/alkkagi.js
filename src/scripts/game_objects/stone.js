@@ -12,10 +12,11 @@ export default class Stone {
     ctx.stroke();
     ctx.fillStyle = this.color;
     ctx.fill();  
-  } 
+  }
+  move(dir, speed) {
+    let xVec = speed * Math.cos(dir);
+    let yVec = speed * Math.sin(dir);
 
-  move(dir, speed,) {
-    const [x, y] = dir;
-    this.pos = [this.pos[0] + (x * speed), this.pos[1] + (y * speed)]
+    this.pos = [this.pos[0] * xVec, this.pos[1] * yVec];
   }
 }
