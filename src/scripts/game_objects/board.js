@@ -38,8 +38,7 @@ export default class Board {
   }
 
   moveWhiteStone(num, dir, speed) {
-    console.log(this.whiteStones)
-    this.whiteStones[num].move(dir, speed)
+    this.whiteStones[num].move(dir, speed);
   }
 
   moveBlackStone(num) {

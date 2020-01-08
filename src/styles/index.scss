@@ -25,10 +25,24 @@
   display: flex;
   justify-content: space-around;
   width: 100%;
+  position: relative;
 }
 
-#board {
-  z-index: 3;
+.bottom {
+  background-color: white;
+}
+
+.game-section {
+  position: relative;
+  display: flex;
+  justify-content: left;
+}
+
+.power-bar {
+  width: 0;
+  height: 50px;
+  background-color: rgb(48, 247, 48);
+  border-radius: 15px;
 }
 
 h1 {

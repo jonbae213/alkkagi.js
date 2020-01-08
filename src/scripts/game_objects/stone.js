@@ -14,7 +14,7 @@ export default class Stone {
     ctx.fill();    
   } 
 
-  move(dir, speed) {
+  move(dir, speed,) {
     const [x, y] = dir;
     this.pos = [this.pos[0] + (x * speed), this.pos[1] + (y * speed)]
   }

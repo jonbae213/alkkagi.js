@@ -1,13 +1,10 @@
-import Board from './game_objects/board';
+import Keyboard from './game_inputs/keyboard';
 
 export default class Game {
   constructor(board) {
     this.board = board;
-    document.addEventListener("keydown", (e) => {
-      console.log(e.keyCode);
-    })
-    document.addEventListener("keyup", e => {
-      console.log("it went up");
-    })
+    this.keyboard = new Keyboard();
+    document.addEventListener('keydown', e => this.keyboard.handleKeyHeld(e));
+    document.addEventListener('keyup', e => this.keyboard.handleKeyUp(e));
   }
 }

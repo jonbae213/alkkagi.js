@@ -5,13 +5,11 @@ export default class View {
     
   }
 
-  renderBoard() {
+  draw() {
+    this.ctx.clearRect(0, 0, 504, 504);
     this.game.board.draw(this.ctx);
-  }
-
-  renderStones() {
     this.game.board.whiteStones.concat(this.game.board.blackStones).forEach(stone => {
-      stone.draw(this.ctx);  
+      stone.draw(this.ctx);
     });
   }
 }
