@@ -12,27 +12,38 @@ const initialWhitePositions = [
 
 export default class Board {
   constructor() {
-    this.whiteStones = {};
-    this.blackStones = {};
+    this.whiteStones = [];
+    this.blackStones = [];
     this.placeWhiteStones();
     this.placeBlackStones();
   }
 
   placeWhiteStones() {
     let i = 0;
-    while (Object.keys(this.whiteStones).length < 7) {
-      this.whiteStones[i + 1] = new Stone('white', initialWhitePositions[i])
+    while (this.whiteStones.length < 7) {
+      this.whiteStones.push(new Stone('white', initialWhitePositions[i], i));
       i++;
     }
   }
 
   placeBlackStones() {
-    let i = 0;
-    while (Object.keys(this.blackStones).length < 7) {
-      let [x, y] = initialWhitePositions[i];
-      this.blackStones[i + 1] = new Stone("black", [500 - x, 500 - y]);
+    let i = 7;
+    let j = 0
+    while (this.blackStones.length < 7) {
+      let [x, y] = initialWhitePositions[j];
+      this.blackStones.push(new Stone("black", [500 - x, 500 - y], i));
       i++;
+      j++;
     }
+  }
+
+  moveWhiteStone(num, dir, speed) {
+    console.log(this.whiteStones)
+    this.whiteStones[num].move(dir, speed)
+  }
+
+  moveBlackStone(num) {
+  
   }
 
   draw(ctx) {

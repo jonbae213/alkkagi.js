@@ -1,7 +1,8 @@
 export default class Stone {
-  constructor(color, pos) {
+  constructor(color, pos, num) {
     this.pos = pos;
     this.color = color;
+    this.num = num
   }
 
   draw(ctx) {
@@ -12,4 +13,9 @@ export default class Stone {
     ctx.fillStyle = this.color;
     ctx.fill();    
   } 
+
+  move(dir, speed) {
+    const [x, y] = dir;
+    this.pos = [this.pos[0] + (x * speed), this.pos[1] + (y * speed)]
+  }
 }

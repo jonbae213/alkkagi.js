@@ -2,7 +2,7 @@ export default class View {
   constructor(game, ctx) {
     this.game = game;
     this.ctx = ctx;
-  
+    
   }
 
   renderBoard() {
@@ -10,9 +10,8 @@ export default class View {
   }
 
   renderStones() {
-    Object.values(this.game.board.whiteStones)
-      .concat(Object.values(this.game.board.blackStones)).forEach(stone => {
-        stone.draw(this.ctx);  
+    this.game.board.whiteStones.concat(this.game.board.blackStones).forEach(stone => {
+      stone.draw(this.ctx);  
     });
   }
 }
