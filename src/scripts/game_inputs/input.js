@@ -11,11 +11,11 @@ export default class Input {
   handleKeyHeld(e) {
     if (e.keyCode !== 32) {
       return;
-    } else if (this.power === 14) {
+    } else if (this.power === 1) {
       return;
     }
-    this.power++;
-    const power_bar = (this.power * 36);
+    this.power += .1;
+    const power_bar = (this.power * 504);
     document.getElementsByClassName('power-bar')[0].style.width = `${power_bar}px`;
   }
 
@@ -55,7 +55,7 @@ export default class Input {
     const vert = e.pageY - e.target.offsetTop - 170;
     let [x, y] = this.stonePos;
 
-    this.dir = Math.atan2(vert - y, hor - x) * -1;
+    this.dir = Math.atan2(y - vert, x - hor);
   }
 
   notify(str) {

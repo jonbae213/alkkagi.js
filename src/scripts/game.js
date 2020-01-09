@@ -20,17 +20,12 @@ export default class Game {
     });
     document.addEventListener('keyup', e => {
       if (this.input.dir) {
+        let i;
         if (this.currentPlayer === 'white') {
-          let i = this.findStoneInd(this.input.selectedStone, 
-            this.board.whiteStones);
-          this.flickStone(i
-            , this.input.dir, this.input.power);
+          this.flickStone(this.input.dir, this.input.power);
           this.currentPlayer = 'black';
         } else {
-          let i = this.findStoneInd(this.input.selectedStone,
-            this.board.blackStones);
-          this.flickStone(i
-            , this.input.dir, this.input.power);
+          this.flickStone(this.input.dir, this.input.power);
           this.currentPlayer = 'white';
         }
        
@@ -61,40 +56,45 @@ export default class Game {
     window.game = this;
   }
 
-  flickStone(num, dir, speed) {
+  flickStone(dir, speed) {
     let currentStone;
     let movementStopped = false;
     let vec = speed;
 
     if (this.currentPlayer === 'white') {
-      currentStone = this.board.whiteStones[num];
+      currentStone = this.board.whiteStones[this.findStoneInd(this.input.selectedStone, this.board.whiteStones)];
     } else {
-      currentStone = this.board.blackStones[num];
+      currentStone = this.board.blackStones[this.findStoneInd(this.input.selectedStone, this.board.blackStones)];
     }
     
     while (!movementStopped) {
+      console.log(currentStone.num)
       currentStone.move(dir, vec)
+      this.draw();
       if (vec !== 14) {
-        vec -= 1
-      } else if (vec <= 0) {
-        break;
-      }
-      if (this.outOfBounds(currentStone)) {
-        this.removeStone(currentStone);
+        vec *= .80;
+      } else if (vec <= .01) {
         movementStopped = true;
+        break;
+      } else {
+        this.removeStone(currentStone)
       }
       this.board.blackStones.concat(this.board.whiteStones).forEach(stone => {
         if (!(currentStone.num === stone.num && stone.color === currentStone.color)) {
           if (this.hitOtherStone(stone, currentStone)) {
             currentStone = stone;
           }
-        } 
+        }
       }); 
-      this.draw();
+      if (this.outOfBounds(currentStone)) {
+        this.removeStone(currentStone);
+        movementStopped = true;
+      }
     }
     if (this.gameOver()) {
       alert(`${this.winner} is the Winner! Muahahaha`);
     }
+
   }
 
   gameOver() {
@@ -139,7 +139,6 @@ export default class Game {
   }
 
   removeStone(stone) {
-    let ind;
     let pieces = [];
     if (stone.color === 'white') {
       this.board.whiteStones.forEach((stoneTwo) => {

@@ -15,9 +15,12 @@ export default class Stone {
   }
 
   move(dir, speed) {
-    let xVec = speed * Math.cos(dir) * this.pos[0];
-    let yVec = speed * Math.sin(dir) * this.pos[1];
-
+    if (speed === 0) {
+      return;
+    }
+    let xVec = (speed/ 14) * Math.cos(dir) + this.pos[0];
+    let yVec = (speed /14)* Math.sin(dir) + this.pos[1];
     this.pos = [xVec, yVec];
+    console.log(this.pos)
   }
 }
