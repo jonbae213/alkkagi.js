@@ -1,5 +1,5 @@
 export default class Stone {
-  constructor(color, pos, num) {
+  constructor(color, pos, num, game) {
     this.pos = pos;
     this.color = color;
     this.num = num;
@@ -13,10 +13,11 @@ export default class Stone {
     ctx.fillStyle = this.color;
     ctx.fill();  
   }
-  move(dir, speed) {
-    let xVec = speed * Math.cos(dir);
-    let yVec = speed * Math.sin(dir);
 
-    this.pos = [this.pos[0] * xVec, this.pos[1] * yVec];
+  move(dir, speed) {
+    let xVec = speed * Math.cos(dir) * this.pos[0];
+    let yVec = speed * Math.sin(dir) * this.pos[1];
+
+    this.pos = [xVec, yVec];
   }
 }

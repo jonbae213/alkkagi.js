@@ -10,8 +10,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const ctx = board.getContext("2d");
   // const game = new Game();
   // new Alkkagi(game, ctx).start();
-  const gameview = new View(new Game(new Board()), ctx);
-  gameview.game.draw(ctx);
-  gameview.game.board.whiteStones[0].move(0, 14)
-  gameview.game.draw(ctx);
+  // const view = new View(ctx);
+  const game = new Game(ctx);
+  game.draw();
 });

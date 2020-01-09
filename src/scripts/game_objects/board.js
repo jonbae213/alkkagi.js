@@ -11,7 +11,7 @@ const initialWhitePositions = [
 ];
 
 export default class Board {
-  constructor() {
+  constructor(game) {
     this.whiteStones = [];
     this.blackStones = [];
     this.placeWhiteStones();
@@ -33,14 +33,6 @@ export default class Board {
       this.blackStones.push(new Stone("black", [500 - x, 500 - y], i));
       i++;
     }
-  }
-
-  moveWhiteStone(num, dir, speed) {
-    this.whiteStones[num].move(dir, speed);
-  }
-
-  moveBlackStone(num) {
-  
   }
 
   draw(ctx) {
