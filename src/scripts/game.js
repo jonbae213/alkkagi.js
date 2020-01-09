@@ -66,21 +66,17 @@ export default class Game {
     } else {
       currentStone = this.board.blackStones[this.findStoneInd(this.input.selectedStone, this.board.blackStones)];
     }
-    
     while (!movementStopped) {
-      console.log(currentStone.num)
+      console.log({[currentStone.color]: currentStone.num})
       currentStone.move(dir, vec)
       this.draw();
-      if (vec !== 14) {
-        vec *= .80;
-      } else if (vec <= .01) {
+      vec *= .90;
+      if (vec <= .01) {
         movementStopped = true;
         break;
-      } else {
-        this.removeStone(currentStone)
-      }
+      } 
       this.board.blackStones.concat(this.board.whiteStones).forEach(stone => {
-        if (!(currentStone.num === stone.num && stone.color === currentStone.color)) {
+        if (currentStone.num !== stone.num && stone.color !== currentStone.color) {
           if (this.hitOtherStone(stone, currentStone)) {
             currentStone = stone;
           }
