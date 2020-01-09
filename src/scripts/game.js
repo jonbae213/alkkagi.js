@@ -21,11 +21,15 @@ export default class Game {
     document.addEventListener('keyup', e => {
       if (this.input.dir) {
         if (this.currentPlayer === 'white') {
-          this.flickStone(this.input.selectedStone
+          let i = this.findStoneInd(this.input.selectedStone, 
+            this.board.whiteStones);
+          this.flickStone(i
             , this.input.dir, this.input.power);
           this.currentPlayer = 'black';
         } else {
-          this.flickStone(this.input.selectedStone
+          let i = this.findStoneInd(this.input.selectedStone,
+            this.board.blackStones);
+          this.flickStone(i
             , this.input.dir, this.input.power);
           this.currentPlayer = 'white';
         }
@@ -54,7 +58,7 @@ export default class Game {
     this.board.whiteStones.concat(this.board.blackStones).forEach(stone => {
       stone.draw(this.ctx);
     });
-    window.board = this.board;
+    window.game = this;
   }
 
   flickStone(num, dir, speed) {
@@ -113,6 +117,16 @@ export default class Game {
     } else {
       return false;
     }
+  }
+
+  findStoneInd(stoneNum, stones) {
+    let i;
+    stones.map((stone, j) => {
+      if (stone.num === stoneNum) {
+        i = j;
+      }
+    });
+    return i;
   }
 
   outOfBounds(stone) {
