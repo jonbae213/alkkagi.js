@@ -109,10 +109,11 @@ h1 {
   background-size: cover;
   background-image: url("/assets/left-flag.png");
   position: absolute;
+  width: 50%;
   top: 0;
-  animation-duration: 4s;
-  animation-name: slideinleft;
+  animation: slideinleft 2s ease-in-out forwards;
   z-index: 3;
+  transform: translateX(-100%);
 }
 
 .right-curtain {
@@ -120,32 +121,29 @@ h1 {
   background-size: cover;
   background-image: url("/assets/right-flag.png");
   position: absolute;
+  width: 50%;
   top: 0;
-  animation-duration: 4s;
-  animation-name: slideinright;
+  animation: slideinright 2s ease-in-out forwards;
   z-index: 3;
+  transform: translateX(200%);
 }
 
 @keyframes slideinleft {
   from {
-    margin-right: 50%;
-    width: 50%;
+    transform: translateX(0);
   }
 
   to {
-    margin-right: 100%;
-    width: 0;
+    transform: translateX(-100%);
   }
 }
 
 @keyframes slideinright {
   from {
-    margin-left: 50%;
-    width: 50%; 
+    transform: translateX(100%);
   }
 
   to {
-    margin-left: 100%;
-    width: 0;
+    transform: translateX(200%);
   }
 }

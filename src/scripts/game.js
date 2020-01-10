@@ -1,5 +1,3 @@
-// import Player from './game_objects/player';
-import Input from './game_inputs/input';
 import Board from './game_objects/board';
 
 export default class Game {
@@ -9,40 +7,6 @@ export default class Game {
     this.board = new Board();
     this.setupInputs();
     this.winner = '';
-  }
-  
-  setupInputs() {
-    document.addEventListener('keydown', e => {
-      if (Number.isInteger(this.input.selectedStone) && this.input.dir) {
-        this.input.handleKeyHeld(e)
-      }
-    });
-    document.addEventListener('keyup', e => {
-      if (this.input.dir) {
-        if (this.currentPlayer === 'white') {
-          this.flickStone(this.input.dir, this.input.power);
-          this.currentPlayer = 'black';
-        } else {
-          this.flickStone(this.input.dir, this.input.power);
-          this.currentPlayer = 'white';
-        }
-       
-        this.input.handleKeyUp(e);
-      }
-    });
-    document.getElementById('board').addEventListener('click', e => {
-      let currentPlayerStones = [];
-      this.board.stones.forEach(stone => {
-        if (stone.color === this.currentPlayer) {
-          currentPlayerStones.push(stone);
-        }
-      })
-      if (!Number.isInteger(this.input.selectedStone)) {
-        this.input.handleFirstMouseClick(e, currentPlayerStones);
-      } else {
-        this.input.handleSecondMouseClick(e);
-      } 
-    });
   }
 
   draw(ctx) {
