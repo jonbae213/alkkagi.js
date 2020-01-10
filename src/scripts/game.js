@@ -2,10 +2,7 @@ import Board from './game_objects/board';
 
 export default class Game {
   constructor() {
-    this.input = new Input();
-    this.currentPlayer = 'white';
     this.board = new Board();
-    this.setupInputs();
     this.winner = '';
   }
 
@@ -17,8 +14,8 @@ export default class Game {
     });
   }
 
-  flickStone(dir, speed) {
-    let ind = this.findStoneInd(this.input.selectedStone)
+  flickStone(dir, speed, stoneInput) {
+    let ind = this.findStoneInd(stoneInput)
     let currentStone = this.board.stones[ind]
     let movementStopped = false;
     let vec = speed;
@@ -27,7 +24,7 @@ export default class Game {
       let prevPos = currentStone.pos
       currentStone.move(dir, vec)
       vec *= .90;
-      if (vec <= .001) {
+      if (vec <= .01) {
         movementStopped = true;
         break;
       } 

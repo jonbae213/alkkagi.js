@@ -12,6 +12,6 @@ document.addEventListener("DOMContentLoaded", () => {
   // new Alkkagi(game, ctx).start();
   // const view = new View(ctx);
   const gameview = new View (new Game(), ctx);
-  gameview.game.draw(ctx);
-  // gameview.animate();
+  // gameview.game.draw(ctx);
+  gameview.animate();
 });

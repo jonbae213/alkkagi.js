@@ -18,8 +18,8 @@ export default class Stone {
     if (speed === 0) {
       return;
     }
-    let xVec = ((speed) * Math.cos(dir) * 60) + this.pos[0];
-    let yVec = ((speed) * Math.sin(dir) * 60) + this.pos[1];
+    let xVec = ((speed) * Math.cos(dir) * 70) + this.pos[0];
+    let yVec = ((speed) * Math.sin(dir) * 70) + this.pos[1];
     this.pos = [xVec, yVec];
   }
 }

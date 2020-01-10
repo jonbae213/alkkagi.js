@@ -29,14 +29,7 @@ export default class Input {
     this.player = this.player === 'white' ? 'black' : 'white'
     this.notify('your move');
   }
-
-  handleMouseMove(e) {
-    if (!this.selectedStone) {
-      return;
-    }
-
-  }
-
+  
   handleFirstMouseClick(e, stones) {
     const hor = e.pageX - e.target.offsetLeft - 7;
     const vert = e.pageY - e.target.offsetTop - 170;

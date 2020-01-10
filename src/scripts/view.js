@@ -5,15 +5,16 @@ export default class View {
     this.ctx = ctx; 
     this.lastTime = 0;
     this.game = game;
+    this.deltaTime = 0;
     this.input = new Input();
+    this.setupInputs();
+    this.game.flickStone = this.game.flickStone.bind(this.game);
   }
 
   animate(timestamp) {
-    const deltaTime = timestamp - this.lastTime;
-    if (deltaTime > 0.17) {
-      this.game.draw(this.ctx);
-    }
+    this.deltaTime = timestamp - this.lastTime;
     this.lastTime = timestamp;
+    this.game.draw(this.ctx)
     requestAnimationFrame(this.animate.bind(this));
   }
 
@@ -25,12 +26,16 @@ export default class View {
     });
     document.addEventListener('keyup', e => {
       if (this.input.dir) {
-        if (this.game.currentPlayer === 'white') {
-          this.game.flickStone(this.input.dir, this.input.power).bind(game);
-          this.currentPlayer = 'black';
+        if (this.input.player === 'white') {
+          this.game.flickStone(this.input.dir, 
+            this.input.power, 
+            this.input.selectedStone,
+            );
         } else {
-          this.game.flickStone(this.input.dir, this.input.power).bind(game);
-          this.game.currentPlayer = 'white';
+          this.game.flickStone(this.input.dir, 
+            this.input.power, 
+            this.input.selectedStone,
+            );
         }
 
         this.input.handleKeyUp(e);
@@ -39,7 +44,7 @@ export default class View {
     document.getElementById('board').addEventListener('click', e => {
       let currentPlayerStones = [];
       this.game.board.stones.forEach(stone => {
-        if (stone.color === this.game.currentPlayer) {
+        if (stone.color === this.input.player) {
           currentPlayerStones.push(stone);
         }
       })
