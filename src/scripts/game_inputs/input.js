@@ -11,10 +11,10 @@ export default class Input {
   handleKeyHeld(e) {
     if (e.keyCode !== 32) {
       return;
-    } else if (this.power === 1) {
+    } else if (this.power >= .95) {
       return;
     }
-    this.power += .1;
+    this.power += 0.1;
     const power_bar = (this.power * 504);
     document.getElementsByClassName('power-bar')[0].style.width = `${power_bar}px`;
   }

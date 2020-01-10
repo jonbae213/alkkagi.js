@@ -1,5 +1,5 @@
 export default class Stone {
-  constructor(color, pos, num, game) {
+  constructor(color, pos, num) {
     this.pos = pos;
     this.color = color;
     this.num = num;
@@ -18,7 +18,6 @@ export default class Stone {
     if (speed === 0) {
       return;
     }
-    console.log(speed)
     let xVec = ((speed) * Math.cos(dir) * 60) + this.pos[0];
     let yVec = ((speed) * Math.sin(dir) * 60) + this.pos[1];
     this.pos = [xVec, yVec];

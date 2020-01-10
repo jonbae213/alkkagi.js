@@ -1,12 +1,13 @@
 export default class View {
-  constructor(ctx) {
+  constructor(game, ctx) {
     this.ctx = ctx; 
     this.lastTime = 0;
+    this.game = game;
   }
 
   animate(timestamp) {
     const deltaTime = timestamp - this.lastTime;
-    if (deltaTime > 0.00000000000000000000001) {
+    if (deltaTime > 0.17) {
       this.game.draw(this.ctx);
     }
     this.lastTime = timestamp;

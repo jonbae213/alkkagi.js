@@ -25,6 +25,10 @@
   }
 }
 
+#board:hover {
+  cursor: pointer;
+}
+
 .middle {
   display: flex;
   justify-content: space-around;
@@ -93,3 +97,55 @@ h1 {
   }
 }
 
+.curtain-container {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  margin: 0;
+}
+
+.left-curtain {
+  height: 100%;
+  background-size: cover;
+  background-image: url("/assets/left-flag.png");
+  position: absolute;
+  top: 0;
+  animation-duration: 4s;
+  animation-name: slideinleft;
+  z-index: 3;
+}
+
+.right-curtain {
+  height: 100%;
+  background-size: cover;
+  background-image: url("/assets/right-flag.png");
+  position: absolute;
+  top: 0;
+  animation-duration: 4s;
+  animation-name: slideinright;
+  z-index: 3;
+}
+
+@keyframes slideinleft {
+  from {
+    margin-right: 50%;
+    width: 50%;
+  }
+
+  to {
+    margin-right: 100%;
+    width: 0;
+  }
+}
+
+@keyframes slideinright {
+  from {
+    margin-left: 50%;
+    width: 50%; 
+  }
+
+  to {
+    margin-left: 100%;
+    width: 0;
+  }
+}

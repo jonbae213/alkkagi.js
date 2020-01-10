@@ -8,32 +8,35 @@
   <script type="application/javascript" src="./dist/main.js"></script>
   <title>Document</title>
 </head>
-<body class="app">
-  <section class="top">
-    <h1>알까기.js 
-      <span>
-      (Alkkagi.js)
-      </span>
-    </h1>
-    <span>Press a stone to flick it, Press spacebar to determine how hard!</span>
-  </section>
-  <section class="middle">
-    <div class="player-one">
-      <h2>Player 1</h2>
-      <h3 id="white"></h3>
-    </div>
-    <section class="game-section">
-      <canvas id="board"></canvas>
-      <div class="power-bar-container">
-        <div class="power-bar"></div>
+<body class="curtain-container">
+  <div class="left-curtain"></div>
+  <main class="app">
+    <section class="top">
+      <h1>알까기.js 
+        <span>
+        (Alkkagi.js)
+        </span>
+      </h1>
+      <span>Press a stone to flick it, Press spacebar to determine how hard!</span>
+    </section>
+    <section class="middle">
+      <div class="player-one">
+        <h2>Player 1</h2>
+        <h3 id="white"></h3>
+      </div>
+      <section class="game-section">
+        <canvas id="board"></canvas>
+        <div class="power-bar-container">
+          <div class="power-bar"></div>
+        </div>
+      </section>
+      <div class="player-two">
+        <h2>Player 2</h2>
+        <h3 id="black"></h3>
       </div>
     </section>
-    <div class="player-two">
-      <h2>Player 2</h2>
-      <h3 id="black"></h3>
-    </div>
-  </section>
-  <section class="bottom">
-  </section>
+    <section class="bottom"></section>
+  </main>
+  <div class="right-curtain"></div>
 </body>
 </html>
