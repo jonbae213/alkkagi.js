@@ -14,7 +14,9 @@ export default class View {
   animate(timestamp) {
     this.deltaTime = timestamp - this.lastTime;
     this.lastTime = timestamp;
-    this.game.draw(this.ctx)
+    this.game.moveStones(this.deltaTime);
+    this.game.draw(this.ctx);
+    
     requestAnimationFrame(this.animate.bind(this));
   }
 
@@ -30,11 +32,13 @@ export default class View {
           this.game.flickStone(this.input.dir, 
             this.input.power, 
             this.input.selectedStone,
+            this.deltaTime
             );
         } else {
           this.game.flickStone(this.input.dir, 
             this.input.power, 
             this.input.selectedStone,
+            this.deltaTime
             );
         }
 

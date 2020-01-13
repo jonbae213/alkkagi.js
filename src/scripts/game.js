@@ -14,36 +14,61 @@ export default class Game {
     });
   }
 
-  flickStone(dir, speed, stoneInput) {
-    let ind = this.findStoneInd(stoneInput)
-    let currentStone = this.board.stones[ind]
-    let movementStopped = false;
-    let vec = speed;
-
-    while (!movementStopped) {
-      let prevPos = currentStone.pos
-      currentStone.move(dir, vec)
-      vec *= .90;
-      if (vec <= .01) {
-        movementStopped = true;
-        break;
-      } 
-      this.board.stones.forEach(stone => {
-        if (currentStone.num !== stone.num) {
-          if (this.hitOtherStone(stone, currentStone, prevPos)) {
-            currentStone = stone;
-          }
+  moveStones(deltaTime) {
+    this.board.stones.forEach(stone => {
+      stone.move(deltaTime);
+    });
+  }
+ 
+  flickStone(dir, speed, stoneInput, deltaTime) {
+    let ind = this.findStoneInd(stoneInput);
+    let currentStone = this.board.stones[ind];
+    let finalPos = this.getFinalPos(currentStone, dir, speed);
+    let nextStone = null;
+    let diff = [(this.board.stones[0].pos[0] - currentStone.pos[0]), (this.board.stones[0].pos[1] - currentStone.pos[1])];
+    this.board.stones.forEach(stone => {
+      let [x1, y1] = currentStone.pos;
+      let [x2, y2] = stone.pos;
+      let newDiff = [x2 - x1, y2 - y1];
+      if (stone.num !== currentStone.num) {
+        if (this.hitStone(currentStone, finalPos, stone, dir)
+          && Math.abs(newDiff[0]) < Math.abs(diff[0])
+          && Math.abs(newDiff[1]) < Math.abs(diff[1])) {
+          diff = newDiff;
+          nextStone = stone;
         }
-      }); 
+      }
+    });
+
+    if (nextStone !== null) {
+      currentStone.finalPos = nextStone.pos;
+      this.flickStone(dir, speed, nextStone.num, deltaTime);
+    } else {
+      currentStone.finalPos = finalPos;
       if (this.outOfBounds(currentStone)) {
+
         this.removeStone(currentStone);
-        movementStopped = true;
+        return;
       }
     }
+    currentStone.vel = [((diff[0]) / deltaTime), ((diff[1]) / deltaTime)];
+ 
     if (this.gameOver()) {
       alert(`${this.winner} is the Winner! Muahahaha`);
     }
 
+  }
+
+  hitStone(stone, posTwo, stoneTwo, dir) {
+    for(let i = stone.pos[0]; i < posTwo[0]; i++) {
+      let step = [(i + 1), (stone.pos[1] + Math.tan(dir))]
+  
+      if (this.checkIfHit(step, stoneTwo.pos)) {
+        return true;
+      } else {
+        return false;
+      }
+    }
   }
 
   gameOver() {
@@ -64,10 +89,10 @@ export default class Game {
     return false;
   }
 
-  hitOtherStone(stoneOne, stoneTwo, stoneTwoPrev) {
-    let [x1, y1] = stoneOne.pos;
-    let [x2, y2] = stoneTwo.pos;
-    let [x3, y3] = stoneTwoPrev;
+  checkIfHit(posOne, posTwo) {
+    let [x1, y1] = posOne;
+    let [x2, y2] = posTwo;
+
     if (Math.sqrt(Math.pow((x2 - x1), 2) + Math.pow((y2 - y1), 2)) <= 20) {
       return true;
     } else {
@@ -98,11 +123,16 @@ export default class Game {
   removeStone(stone) {
     let pieces = [];
     this.board.stones.forEach(rock => {
-      if (!(rock.color === stone.color && rock.num === stone.num)) {
+      if (rock.num !== stone.num) {
         pieces.push(rock);
       }
     });
 
     this.board.stones = pieces;
+  }
+
+  getFinalPos(stone, dir, speed) {
+    speed = speed * 504;
+    return [stone.pos[0] + (speed * Math.cos(dir)), stone.pos[1] + (speed * Math.sin(dir))]; 
   }
 }
